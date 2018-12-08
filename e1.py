@@ -4,7 +4,10 @@ def ourFunction(x):
     return math.pow(math.e, 4 - math.pow(x, 2))
 
 def analytical(a, b):
-    return (0.5*math.pow(math.e, 4)*math.sqrt(math.pi)*b) - (0.5*math.pow(math.e, 4)*math.sqrt(math.pi)*a)
+    # e^4 * -1/2x * e^(-x^2)
+    e1 = math.pow(math.e, 4) * (-1.0 / (2.0*b)) * math.pow(math.e, -1 * math.pow(b, 2))
+    e2 = math.pow(math.e, 4) * (-1.0 / (2.0*a)) * math.pow(math.e, -1 * math.pow(a, 2))
+    return str(e1-e2)[0:7]
 
 def trapezio(a, b, n):
     h = (b - a)/n
@@ -42,9 +45,8 @@ def simp3Por8(a, b, n):
 
 a = 2
 b = 5
-solucaoSimples = analytical(a, b)
-print(math.pow(math.e, 4)*math.sqrt(math.pi))
-print("Solucao analitica:\t" + str(round(solucaoSimples, 5)))
+solucaoSimples = float(analytical(a, b))
+print("Solucao analitica:\t" + str(solucaoSimples))
 
 print("\nTrapezio Repetida")
 qtdeIteracoes = 10
